@@ -29,7 +29,7 @@ function App() {
               </Row>
             </Col>
             <Col xs={{ span: 12, order: "first" }} md={{ span: 4, order: "last" }} className="mb-3 mb-md-0">
-              <Menu />
+              <Menu r1FormRef={r1FormRef} />
             </Col>
           </Row>
         </Container>

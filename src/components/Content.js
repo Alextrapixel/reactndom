@@ -9,7 +9,7 @@ const Content = ({ formRef }) => {
 
     return (
         <div>
-            <Card ref={formRef} className="">
+            <Card ref={formRef} className="d-none">
                 <Card.Header>Input Number Range</Card.Header>
                 <Card.Body>
                     <Card.Title>Body Title</Card.Title>
