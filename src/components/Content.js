@@ -11,6 +11,10 @@ const Content = ({ formRef, ctnRef }) => {
         let randNum = Math.floor(Math.random() * 100) + 1;
         return randNum;
     };
+    let showRandomLegacy = () => {
+        formRef.current.classList.add('d-none');
+        ctnRef.current.classList.remove('d-none');
+    };
 
     return (
         <div>
@@ -29,15 +33,14 @@ const Content = ({ formRef, ctnRef }) => {
                             </Form.Group>
                         </Col>
                     </Row>
-                    <Button variant="primary" className="w-100 rounded-pill px-3" size="sm">next</Button>
+                    <Button variant="primary" className="w-100 rounded-pill px-3" size="sm" onClick={showRandomLegacy}>next</Button>
                 </Card.Body>
             </Card>
             <Card ref={ctnRef} className="d-none rounded-4">
                 <Card.Header>Title</Card.Header>
                 <Card.Body>
-                    <Card.Title>Body Title</Card.Title>
-                    <Card.Text>Body content {randomFunc()}</Card.Text>
-                    <Button variant="primary">button</Button>
+                    <Card.Title className="my-4"><h1>{randomFunc()}</h1></Card.Title>
+                    <Button variant="primary" size="sm" className="rounded-pill px-3">randomize</Button>
                 </Card.Body>
             </Card>
         </div>
