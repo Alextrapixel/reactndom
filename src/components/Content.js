@@ -4,12 +4,14 @@ import Button from "react-bootstrap/Button";
 import { Form, Row, Col } from "react-bootstrap";
 
 const Content = ({ formRef, ctnRef }) => {
-    const [minval, setMinval] = useState('');
-    const [maxval, setMaxval] = useState('');
+    const [ranval, setRandval] = useState(0);
+    const [minval, setMinval] = useState(0);
+    const [maxval, setMaxval] = useState(0);
+    const [title, setTitle] = useState("");
 
     let randomFunc = () => {
-        let randNum = Math.floor(Math.random() * 100) + 1;
-        return randNum;
+        let randNum = parseInt(minval) + Math.floor(Math.random() * (parseInt(maxval) - parseInt(minval))) + 1;
+        setRandval(randNum);
     };
     let showRandomLegacy = () => {
         formRef.current.classList.add('d-none');
@@ -21,6 +23,9 @@ const Content = ({ formRef, ctnRef }) => {
             <Card ref={formRef} className="d-none rounded-4">
                 <Card.Header className="fw-bold">Input Number Range</Card.Header>
                 <Card.Body>
+                    <Form.Group className="mb-3" controlId="formMin">
+                        <Form.Control type="text" placeholder="Card title" value={title} onChange={e => { setTitle(e.target.value) }} />
+                    </Form.Group>
                     <Row>
                         <Col xs={6}>
                             <Form.Group className="mb-3" controlId="formMin">
@@ -37,10 +42,10 @@ const Content = ({ formRef, ctnRef }) => {
                 </Card.Body>
             </Card>
             <Card ref={ctnRef} className="d-none rounded-4">
-                <Card.Header>Title</Card.Header>
+                <Card.Header className="fw-bold">{title}</Card.Header>
                 <Card.Body>
-                    <Card.Title className="my-4"><h1>{randomFunc()}</h1></Card.Title>
-                    <Button variant="primary" size="sm" className="rounded-pill px-3">randomize</Button>
+                    <Card.Title className="my-3 fw-bold"><h1>{ranval}</h1></Card.Title>
+                    <Button variant="primary" size="sm" className="rounded-pill px-3" onClick={randomFunc}>randomize</Button>
                 </Card.Body>
             </Card>
         </div>
