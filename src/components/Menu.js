@@ -1,8 +1,14 @@
+import { connect } from "react-redux";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
+function resetRange() {
+    return { type: 'RESET_RANGE' }
+}
+
 const Menu = (props) => {
     let randomLegacy = () => {
+        props.resetRange();
         props.r1CtnRef.current.classList.add('d-none');
         props.r1FormRef.current.classList.remove('d-none');
     };
@@ -20,4 +26,6 @@ const Menu = (props) => {
     );
 };
 
-export default Menu;
+const dispatchToProps = { resetRange }
+
+export default connect(null, dispatchToProps)(Menu);
