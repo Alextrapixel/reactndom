@@ -11,18 +11,24 @@ import Content from "./components/Content";
 import Menu from "./components/Menu";
 
 const rnState = {
+  menu: 0,
   minval: 0,
-  maxval: 0
+  maxval: 0,
+  cardtitle: ''
 }
 
 function reducer(state = rnState, action) {
   switch (action.type) {
+    case "SELECT_MENU":
+      return { ...state, menu: action.menu };
     case "SET_MIN":
       return { ...state, minval: action.num };
     case "SET_MAX":
       return { ...state, maxval: action.num };
+    case "SET_TITLE":
+      return { ...state, cardtitle: action.title };
     case "RESET_RANGE":
-      return { minval: 0, maxval: 0 };
+      return { minval: 0, maxval: 0, cardtitle: '' };
     default:
       return state;
   }
@@ -48,7 +54,9 @@ function App() {
               <Col xs={{ span: 12, order: "last" }} md={{ span: 8, order: "first" }}>
                 <Row>
                   <Col xs={0} md={2} lg={3}></Col>
-                  <Col xs={12} md={8} lg={6}><Content formRef={r1FormRef} ctnRef={r1CtnRef} /></Col>
+                  <Col xs={12} md={8} lg={6}>
+                    <Content formRef={r1FormRef} ctnRef={r1CtnRef} />
+                  </Col>
                   <Col xs={0} md={2} lg={3}></Col>
                 </Row>
               </Col>

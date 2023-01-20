@@ -10,10 +10,12 @@ function setMinRandom(num) {
 function setMaxRandom(num) {
     return {type: 'SET_MAX', num: num};
 }
+function setCardTitle(title) {
+    return {type: 'SET_TITLE', title: title};
+}
 
 const Content = (props) => {
     const [ranval, setRandval] = useState(0);
-    const [title, setTitle] = useState("");
 
     let randomFunc = () => {
         let randNum = parseInt(props.minval) + Math.floor(Math.random() * (parseInt(props.maxval) - parseInt(props.minval))) + 1;
@@ -30,7 +32,7 @@ const Content = (props) => {
                 <Card.Header className="fw-bold">Input Number Range</Card.Header>
                 <Card.Body>
                     <Form.Group className="mb-3" controlId="formMin">
-                        <Form.Control type="text" placeholder="Card title" value={title} onChange={e => { setTitle(e.target.value) }} />
+                        <Form.Control type="text" placeholder="Card title" value={props.cardtitle} onChange={e => { props.setCardTitle(e.target.value) }} />
                     </Form.Group>
                     <Row>
                         <Col xs={6}>
@@ -48,7 +50,7 @@ const Content = (props) => {
                 </Card.Body>
             </Card>
             <Card ref={props.ctnRef} className="d-none rounded-4">
-                <Card.Header className="fw-bold">{title}</Card.Header>
+                <Card.Header className="fw-bold">{props.cardtitle}</Card.Header>
                 <Card.Body>
                     <Card.Title className="my-3 fw-bold"><h1>{ranval}</h1></Card.Title>
                     <Button variant="primary" size="sm" className="rounded-pill px-3" onClick={randomFunc}>randomize</Button>
@@ -61,9 +63,10 @@ const Content = (props) => {
 function mapStateToProps(state) {
     return {
         minval: state.minval,
-        maxval: state.maxval
+        maxval: state.maxval,
+        cardtitle: state.cardtitle
     }
 }
-const mapDispatchToProps = { setMinRandom, setMaxRandom }
+const mapDispatchToProps = { setMinRandom, setMaxRandom, setCardTitle }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);
