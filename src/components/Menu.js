@@ -13,8 +13,10 @@ const Menu = (props) => {
     let randomLegacy = () => {
         props.resetRange();
         props.selectMenu(1);
-        props.r1CtnRef.current.classList.add('d-none');
-        props.r1FormRef.current.classList.remove('d-none');
+        if (props.menu == 1) {
+            props.r1CtnRef.current.classList.add('d-none');
+            props.r1FormRef.current.classList.remove('d-none');
+        }
     };
 
     return (
@@ -30,6 +32,11 @@ const Menu = (props) => {
     );
 };
 
+function mapStateToProps(state) {
+    return {
+        menu: state.menu
+    }
+}
 const dispatchToProps = { resetRange, selectMenu }
 
-export default connect(null, dispatchToProps)(Menu);
+export default connect(mapStateToProps, dispatchToProps)(Menu);

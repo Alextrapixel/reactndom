@@ -28,7 +28,7 @@ const Content = (props) => {
 
     return (
         <div>
-            <Card ref={props.formRef} className="d-none rounded-4">
+            <Card ref={props.formRef} className="rounded-4">
                 <Card.Header className="fw-bold">Input Number Range</Card.Header>
                 <Card.Body>
                     <Form.Group className="mb-3" controlId="formMin">

@@ -3,11 +3,41 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+
+const rnState = {
+  menu: 0,
+  minval: 0,
+  maxval: 0,
+  cardtitle: ''
+}
+
+function reducer(state = rnState, action) {
+  switch (action.type) {
+    case "SELECT_MENU":
+      return { ...state, menu: action.menu };
+    case "SET_MIN":
+      return { ...state, minval: action.num };
+    case "SET_MAX":
+      return { ...state, maxval: action.num };
+    case "SET_TITLE":
+      return { ...state, cardtitle: action.title };
+    case "RESET_RANGE":
+      return { minval: 0, maxval: 0, cardtitle: '' };
+    default:
+      return state;
+  }
+}
+
+const store = createStore(reducer);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 

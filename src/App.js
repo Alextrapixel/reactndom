@@ -4,71 +4,53 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useRef } from 'react';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
+import { connect } from "react-redux";
 import Header from "./components/Header";
-import Content from "./components/Content";
 import Menu from "./components/Menu";
+import Content from "./components/Content";
+import StartPage from "./components/StartPage";
 
-const rnState = {
-  menu: 0,
-  minval: 0,
-  maxval: 0,
-  cardtitle: ''
-}
-
-function reducer(state = rnState, action) {
-  switch (action.type) {
-    case "SELECT_MENU":
-      return { ...state, menu: action.menu };
-    case "SET_MIN":
-      return { ...state, minval: action.num };
-    case "SET_MAX":
-      return { ...state, maxval: action.num };
-    case "SET_TITLE":
-      return { ...state, cardtitle: action.title };
-    case "RESET_RANGE":
-      return { minval: 0, maxval: 0, cardtitle: '' };
-    default:
-      return state;
-  }
-}
-
-const store = createStore(reducer);
-
-function App() {
+function App(props) {
   const r1FormRef = useRef();
   const r1CtnRef = useRef();
 
   return (
-    <Provider store={store}>
-      <div className="App">
-        <div className="content">
-          <Container>
-            <Row>
-              <Col>
-                <Header />
-              </Col>
-            </Row>
-            <Row>
-              <Col xs={{ span: 12, order: "last" }} md={{ span: 8, order: "first" }}>
-                <Row>
-                  <Col xs={0} md={2} lg={3}></Col>
-                  <Col xs={12} md={8} lg={6}>
-                    <Content formRef={r1FormRef} ctnRef={r1CtnRef} />
-                  </Col>
-                  <Col xs={0} md={2} lg={3}></Col>
-                </Row>
-              </Col>
-              <Col xs={{ span: 12, order: "first" }} md={{ span: 4, order: "last" }} className="mb-3 mb-md-0">
-                <Menu r1FormRef={r1FormRef} r1CtnRef={r1CtnRef} />
-              </Col>
-            </Row>
-          </Container>
-        </div>
+    <div className="App">
+      <div className="content">
+        <Container>
+          <Row>
+            <Col>
+              <Header />
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={{ span: 12, order: "last" }} md={{ span: 8, order: "first" }}>
+              <Row>
+                <Col xs={0} md={2} lg={3}></Col>
+                <Col xs={12} md={8} lg={6}>
+                  {props.menu == 0 && <StartPage />}
+                  {props.menu == 1 && <Content formRef={r1FormRef} ctnRef={r1CtnRef} />}
+                </Col>
+                <Col xs={0} md={2} lg={3}></Col>
+              </Row>
+            </Col>
+            <Col xs={{ span: 12, order: "first" }} md={{ span: 4, order: "last" }} className="mb-3 mb-md-0">
+              <Menu r1FormRef={r1FormRef} r1CtnRef={r1CtnRef} />
+            </Col>
+          </Row>
+        </Container>
       </div>
-    </Provider>
+    </div>
   );
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    menu: state.menu,
+    minval: state.minval,
+    maxval: state.maxval,
+    cardtitle: state.cardtitle
+  }
+}
+
+export default connect(mapStateToProps)(App);

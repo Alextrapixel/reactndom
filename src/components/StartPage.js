@@ -1,6 +1,6 @@
 const StartPage = () => {
     return (
-        <div>Select menu item on the right =&gt;</div>
+        <div className="m-5">Select menu item on the right --&gt;</div>
     )
 }
 
