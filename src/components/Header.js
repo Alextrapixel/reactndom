@@ -4,7 +4,7 @@ const Header = () => {
     return (
         <div id="rn-header" className="header">
             <h1>Reactndom</h1>
-            <Alert variant="success">
+            <Alert variant="success" className="rounded-4 mb-4">
                 <Alert.Heading>Welcome,</Alert.Heading>
                 <p>
                     Here is new webapp to randomize a range of number using ReactJs framework.
