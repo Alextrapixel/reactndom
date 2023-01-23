@@ -1,6 +1,10 @@
 # reactndom
 Random number build with React and Bootstrap frontend.
 
+## How to run
+- install project dependencies with `npm install`
+- Run project with `npm run start`
+
 ## Available Scripts
 
 In the project directory, you can run:
