@@ -14,7 +14,7 @@ function setCardTitle(title) {
     return {type: 'SET_TITLE', title: title};
 }
 
-const Content = (props) => {
+const RandCard = (props) => {
     const [ranval, setRandval] = useState(0);
 
     let randomFunc = () => {
@@ -69,4 +69,4 @@ function mapStateToProps(state) {
 }
 const mapDispatchToProps = { setMinRandom, setMaxRandom, setCardTitle }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Content);
+export default connect(mapStateToProps, mapDispatchToProps)(RandCard);

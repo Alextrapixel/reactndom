@@ -7,12 +7,15 @@ import { useRef } from 'react';
 import { connect } from "react-redux";
 import Header from "./components/Header";
 import Menu from "./components/Menu";
-import Content from "./components/Content";
+import RandCard from "./components/RandCard";
+import RandCard2 from "./components/RandCard2";
 import StartPage from "./components/StartPage";
 
 function App(props) {
   const r1FormRef = useRef();
   const r1CtnRef = useRef();
+  const r2FormRef = useRef();
+  const r2CtnRef = useRef();
 
   return (
     <div className="App">
@@ -29,7 +32,8 @@ function App(props) {
                 <Col xs={0} md={2} lg={3}></Col>
                 <Col xs={12} md={8} lg={6}>
                   {props.menu == 0 && <StartPage />}
-                  {props.menu == 1 && <Content formRef={r1FormRef} ctnRef={r1CtnRef} />}
+                  {props.menu == 1 && <RandCard formRef={r1FormRef} ctnRef={r1CtnRef} />}
+                  {props.menu == 2 && <RandCard2 formRef={r2FormRef} ctnRef={r2CtnRef} />}
                 </Col>
                 <Col xs={0} md={2} lg={3}></Col>
               </Row>
