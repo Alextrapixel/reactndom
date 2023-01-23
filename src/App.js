@@ -10,6 +10,7 @@ import Menu from "./components/Menu";
 import RandCard from "./components/RandCard";
 import RandCard2 from "./components/RandCard2";
 import StartPage from "./components/StartPage";
+import LoadingPage from './components/LoadingPage';
 
 function App(props) {
   const r1FormRef = useRef();
@@ -31,9 +32,10 @@ function App(props) {
               <Row>
                 <Col xs={0} md={2} lg={3}></Col>
                 <Col xs={12} md={8} lg={6}>
-                  {props.menu == 0 && <StartPage />}
-                  {props.menu == 1 && <RandCard formRef={r1FormRef} ctnRef={r1CtnRef} />}
-                  {props.menu == 2 && <RandCard2 formRef={r2FormRef} ctnRef={r2CtnRef} />}
+                  {props.isloading == true && <LoadingPage />}
+                  {(props.isloading == false && props.menu) == 1 && <StartPage />}
+                  {(props.isloading == false && props.menu) == 2 && <RandCard formRef={r1FormRef} ctnRef={r1CtnRef} />}
+                  {(props.isloading == false && props.menu) == 3 && <RandCard2 formRef={r2FormRef} ctnRef={r2CtnRef} />}
                 </Col>
                 <Col xs={0} md={2} lg={3}></Col>
               </Row>
@@ -51,6 +53,7 @@ function App(props) {
 function mapStateToProps(state) {
   return {
     menu: state.menu,
+    isloading: state.isloading,
     minval: state.minval,
     maxval: state.maxval,
     cardtitle: state.cardtitle

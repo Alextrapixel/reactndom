@@ -7,7 +7,8 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
 const rnState = {
-  menu: 0,
+  menu: 1,
+  isloading: false,
   minval: 0,
   maxval: 0,
   cardtitle: ''
@@ -17,6 +18,8 @@ function reducer(state = rnState, action) {
   switch (action.type) {
     case "SELECT_MENU":
       return { ...state, menu: action.menu };
+    case "SET_LOADING":
+      return {...state, isloading: action.loading};
     case "SET_MIN":
       return { ...state, minval: action.num };
     case "SET_MAX":

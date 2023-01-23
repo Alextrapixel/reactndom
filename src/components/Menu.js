@@ -8,19 +8,20 @@ function resetRange() {
 function selectMenu(menu) {
     return { type: 'SELECT_MENU', menu: menu }
 }
+function setLoading() {
+    return { type: 'SET_LOADING', loading: true }
+}
 
 const Menu = (props) => {
     let randomLegacy = () => {
         props.resetRange();
-        props.selectMenu(1);
-        if (props.menu == 1) {
-            props.r1CtnRef.current.classList.add('d-none');
-            props.r1FormRef.current.classList.remove('d-none');
-        }
+        props.setLoading();
+        props.selectMenu(2);
     };
     let randomStack = () => {
         props.resetRange();
-        props.selectMenu(2);
+        props.setLoading();
+        props.selectMenu(3);
     }
 
     return (
@@ -44,6 +45,6 @@ function mapStateToProps(state) {
         menu: state.menu
     }
 }
-const dispatchToProps = { resetRange, selectMenu }
+const dispatchToProps = { resetRange, selectMenu, setLoading }
 
 export default connect(mapStateToProps, dispatchToProps)(Menu);
