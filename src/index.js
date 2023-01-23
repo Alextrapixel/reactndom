@@ -24,7 +24,7 @@ function reducer(state = rnState, action) {
     case "SET_TITLE":
       return { ...state, cardtitle: action.title };
     case "RESET_RANGE":
-      return { minval: 0, maxval: 0, cardtitle: '' };
+      return { minval: '', maxval: '', cardtitle: '' };
     default:
       return state;
   }

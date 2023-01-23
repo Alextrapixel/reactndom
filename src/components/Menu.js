@@ -18,14 +18,21 @@ const Menu = (props) => {
             props.r1FormRef.current.classList.remove('d-none');
         }
     };
+    let randomStack = () => {
+        props.resetRange();
+        props.selectMenu(2);
+    }
 
     return (
         <div>
             <Card className="rounded-4">
                 <Card.Header className="fw-bold">Menu</Card.Header>
                 <Card.Body>
-                    <Button variant="outline-primary" size="sm" className="rounded-pill px-3 mb-2" type="button" onClick={randomLegacy}>Random number (default)</Button>
-                    <div>TBD...</div>
+                    <div className="d-grid">
+                        <Button variant="outline-primary" size="sm" className="rounded-pill px-3 mb-2" type="button" onClick={randomLegacy}>Random number (default)</Button>
+                        <Button variant="outline-primary" size="sm" className="rounded-pill px-3 mb-2" type="button" onClick={randomStack}>Random number stack</Button>
+                        <div>TBD...</div>
+                    </div>
                 </Card.Body>
             </Card>
         </div>
